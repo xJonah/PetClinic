@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+
+  java:
+    image: springcommunity/spring-framework-petclinic
+    container_name: spring-container                     
+    ports:
+      - "7500:8080"
+
+  mysql:
+    image: mysql:5.7.8
+    ports:
+      - "7501:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_USER=petclinic
+      - MYSQL_PASSWORD=petclinic
+      - MYSQL_DATABASE=petclinic
+    profiles:
+      - mysql
+
+  postgres:
+    image: postgres:9.6.0
+    ports:
+      - "7502:5432"
+    environment:
+      - POSTGRES_PASSWORD=petclinic
+      - POSTGRES_USER=petclinic
+      - POSTGRES_DB=petclinic
+    profiles:
+      - postgres
+
+
